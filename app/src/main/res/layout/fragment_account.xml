@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.View.NaviFragment.AccountFragment">
+
+    <RelativeLayout
+        android:layout_marginStart="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/img_7"
+            android:layout_marginTop="20dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"/>
+        <TextView
+            android:id="@+id/name"
+            android:text="Nguyễn Lương"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="35dp"
+            android:layout_toRightOf="@id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:text="Cá nhân"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_below="@id/image"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <RelativeLayout
+            android:id="@+id/concern"
+            android:layout_below="@id/image"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginStart="40dp"
+                android:text="Danh sách quan tâm"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/block"
+            android:layout_below="@id/concern"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/ban"
+                android:layout_width="22dp"
+                android:layout_height="24dp"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="40dp"
+                android:text="Danh sách chặn"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+        <TextView
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="Thông tin cá nhân"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/change"
+            android:layout_below="@id/block"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_settings_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="40dp"
+                android:text="Thay đổi mật khẩu"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/sign_out"
+            android:layout_below="@id/change"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:src="@drawable/sign_out"
+                android:layout_width="22dp"
+                android:layout_height="20dp"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="40dp"
+                android:text="Đăng xuất"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_below="@+id/sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+    </RelativeLayout>
+
+
+</ScrollView>

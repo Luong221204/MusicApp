@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.View.Activity.LibActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/appbar"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            app:titleCollapseMode="scale"
+            app:contentScrim="@color/white"
+            app:expandedTitleTextAppearance="@style/CustomTitleText"
+            app:expandedTitleGravity="center_horizontal"
+            app:expandedTitleMarginTop="-30dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:id="@+id/collapsing_toolbar"
+            android:layout_height="170dp">
+            <RelativeLayout
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_marginTop="40dp"
+                    android:text="...bài hát "
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/play"
+                    android:text="PHÁT NGẪU NHIÊN"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/quantity"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+            <androidx.appcompat.widget.Toolbar
+                app:title="Ten Lab"
+                app:titleTextAppearance="@style/CustomTitleText2"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                app:layout_collapseMode="pin" >
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginStart="10dp"
+        android:id="@+id/nested"
+        android:layout_below="@id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/filter"
+                android:src="@drawable/filter"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <TextView
+                android:layout_marginTop="6dp"
+                android:text="Lọc"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/filter2"
+                android:src="@drawable/continues"
+                android:layout_width="14dp"
+                android:layout_height="14dp"/>
+            <TextView
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="6dp"
+                android:text="Mới nhất"
+                android:layout_marginStart="10dp"
+                android:layout_toLeftOf="@id/filter2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/filter"
+                android:id="@+id/recycle"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_below="@id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

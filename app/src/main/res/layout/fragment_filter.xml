@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.View.NaviFragment.PagerFragment.FilterBottomFragment">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:text="Lọc theo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:id="@+id/artist"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/artist"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:textSize="16sp"
+            android:text="Nghệ si"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/right"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/cate"
+        android:layout_below="@id/artist"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/cate"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:textSize="16sp"
+            android:text="Thể loai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/right"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

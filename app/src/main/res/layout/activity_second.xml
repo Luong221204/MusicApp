@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/main"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activity.View.Activity.ArtistActivity"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="380dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            app:titleCollapseMode="scale"
+            app:expandedTitleTextAppearance="@style/CustomTitleText"
+            app:expandedTitleGravity="center_horizontal"
+            app:expandedTitleMarginTop="110dp"
+            android:layout_height="380dp"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <RelativeLayout
+                android:layout_marginTop="60dp"
+                android:id="@+id/relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="140dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/image"
+                    android:src="@drawable/messi"
+                    android:layout_height="140dp"/>
+            </RelativeLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                app:title="Messi"
+                app:titleTextAppearance="@style/CustomTitleText"
+                app:titleTextColor="#401D50" >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="30dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/small"
+                    android:src="@drawable/eli"
+                    android:layout_height="30dp"/>
+            </androidx.appcompat.widget.Toolbar>
+            <RelativeLayout
+                app:layout_collapseMode="parallax"
+                android:layout_marginTop="210dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/followed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="50dp"
+                    android:text="100M quan tâm"
+                    android:textColor="#0097A7"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/follow"
+                    android:layout_width="170dp"
+                    android:padding="3dp"
+                    android:elevation="10dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/followed"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                   android:background="@drawable/button"
+                    android:text="QUAN TÂM"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/play"
+                    android:elevation="10dp"
+                    android:layout_width="170dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/followed"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button2"
+                    android:layout_marginEnd="15dp"
+                    android:padding="3dp"
+                    android:text="PHÁT NHẠC"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginStart="10dp"
+        android:id="@+id/nested"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recycle"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/frame"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Album"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:id="@id/recycle2"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+
+                android:layout_marginTop="20dp"
+                android:id="@+id/frame3"
+                android:layout_below="@id/frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Góp mặt trong "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@id/recycle4"
+                    android:layout_marginTop="40dp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:id="@+id/frame4"
+                android:layout_below="@id/frame3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Thành viên nhóm "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycle5"
+                    android:layout_marginTop="40dp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/frame2"
+                android:layout_below="@id/frame4"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Nghệ sĩ liên quan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@id/recycle3"
+                    android:layout_marginTop="40dp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/frame5"
+                android:layout_below="@id/frame2"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Thành viên"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycle6"
+                    android:layout_marginTop="40dp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_below="@id/frame5"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

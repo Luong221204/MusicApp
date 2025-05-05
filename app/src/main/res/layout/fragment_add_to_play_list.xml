@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.View.NaviFragment.PagerFragment.AddToPlayListFragment">
+
+    <TextView
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:text="Thêm bài hát vào playlist"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/search_layout"
+        android:layout_marginTop="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/im"
+            android:src="@drawable/baseline_search_24"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/im"
+            android:background="@null"
+            android:ems="20"
+            android:hint="Tìm kiếm playlist"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/delete"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:src="@drawable/close"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="13dp"
+            android:layout_height="13dp"/>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_below="@id/search"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/recycle"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:background="#C0F8F8"
+        android:id="@+id/bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Chọn tất cả"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/button"
+            android:text="Áp dụng"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.View.Activity.LoginActivity">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"/>
+    <RelativeLayout
+        android:background="@drawable/register"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="#001a66"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="ĐĂNG NHẬP"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Tên đăng nhập :"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <EditText
+            android:singleLine="true"
+            android:padding="10dp"
+            android:textSize="13sp"
+            android:textAlignment="textStart"
+            android:id="@+id/username"
+            android:background="@drawable/select"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="115dp"
+            android:layout_width="350dp"
+            android:layout_height="40dp"/>
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_below="@id/username"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:text="Mật khẩu :"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:id="@+id/password"
+            android:drawableRight="@drawable/baseline_remove_red_eye_24"
+            android:layout_below="@id/username"
+            android:background="@drawable/select"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="55dp"
+            android:layout_width="350dp"
+            android:layout_height="40dp"/>
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/password"
+            android:id="@+id/forgot"
+            android:textColor="#800000"
+            android:layout_width="wrap_content"
+            android:text="Quên mật khẩu ?"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/forgot"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button2"
+            android:text="Đăng nhập"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:text="Bạn chưa có tài khoản ?"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/register"
+                android:textColor="#ff3333"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                android:layout_marginStart="155dp"
+                android:layout_width="wrap_content"
+                android:text="ĐĂNG KÝ"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

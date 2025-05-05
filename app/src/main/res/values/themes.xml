@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:tool="http://schemas.android.com/apk/res/android">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Dictionary" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    </style>
+
+    <style name="Theme.Dictionary" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
+
+
+    </style>
+    <style name="CustomTitleText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/black</item> <!-- Màu đỏ -->
+        <item name="android:textStyle">bold</item> <!-- Chữ đậm -->
+        <item name="android:textSize">26sp</item> <!-- Cỡ chữ -->
+    </style>
+    <style name="CustomTitleText2" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/black</item> <!-- Màu đỏ -->
+        <item name="android:textStyle">bold</item> <!-- Chữ đậm -->
+        <item name="android:textSize">20sp</item> <!-- Cỡ chữ -->
+    </style>
+    <style name="ToolbarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="ToolbarTitleText2" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="bottomBar" parent="ThemeOverlay.Material3.NavigationView">
+        <item name="android:layout_width">50dp</item>
+    </style>
+
+
+</resources>

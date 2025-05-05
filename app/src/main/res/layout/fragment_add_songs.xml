@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.View.NaviFragment.PlayList.AddSongsFragment">
+
+   <ImageView
+       android:id="@+id/close"
+       android:layout_margin="20dp"
+       android:src="@drawable/close"
+       android:layout_width="20dp"
+       android:layout_height="20dp"/>
+   <TextView
+       android:textStyle="bold"
+       android:textSize="18sp"
+       android:layout_marginTop="17dp"
+       android:layout_toRightOf="@id/close"
+       android:text="Thêm bài hát"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+   <EditText
+       android:hint="Tìm kiếm nghệ sĩ,bài hát"
+       android:drawablePadding="10dp"
+       android:paddingLeft="10dp"
+       android:textSize="14sp"
+       android:paddingBottom="5dp"
+       android:id="@+id/search"
+       android:paddingTop="5dp"
+       android:layout_centerHorizontal="true"
+       android:drawableLeft="@drawable/baseline_search_24"
+       android:ems="18"
+       android:layout_marginStart="20dp"
+       android:layout_below="@id/close"
+       android:background="@drawable/search_layout"
+       android:layout_width="380dp"
+       android:layout_height="wrap_content"/>
+   <com.google.android.material.tabs.TabLayout
+       android:layout_width="match_parent"
+       android:layout_below="@id/search"
+       android:id="@+id/tab_layout"
+       android:layout_height="wrap_content"/>
+   <androidx.viewpager2.widget.ViewPager2
+       android:layout_width="match_parent"
+       android:layout_below="@id/tab_layout"
+       android:id="@+id/view_pager"
+       android:layout_height="match_parent"/>
+</RelativeLayout>

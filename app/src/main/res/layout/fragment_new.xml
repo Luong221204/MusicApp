@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scroll"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.View.NaviFragment.LibraryFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:text="Nghe gần đây"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+           <ImageView
+               android:layout_marginTop="5dp"
+               android:src="@drawable/arrow"
+               android:layout_marginStart="130dp"
+               android:layout_width="16dp"
+               android:layout_height="16dp"/>
+
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/relative"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/recycle1"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/relative6"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/recycle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:text="Playlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="30dp"
+                android:id="@+id/recycle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative7"
+            android:layout_below="@id/relative6"
+            android:layout_width="match_parent"
+            android:layout_height="300sp">
+
+        </RelativeLayout>
+        <Button
+            android:layout_below="@id/relative7"
+            android:text="clicck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+
+</ScrollView>

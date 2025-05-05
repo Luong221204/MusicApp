@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+    <TextView
+        android:background="@drawable/back_ground_up"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="Tạo playlist"
+        android:layout_width="400dp"
+        android:layout_height="50dp"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/relative"
+        android:layout_marginTop="70dp"
+        android:layout_width="300dp"
+        android:layout_height="75dp">
+        <EditText
+            android:layout_margin="10dp"
+            android:paddingLeft="10dp"
+            android:layout_centerInParent="true"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:textSize="14sp"
+            android:hint="Nhập tên playlist"
+            android:background="@drawable/create_layout"
+            android:id="@+id/edit"
+            android:ems="14"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@drawable/back_ground_down"
+        android:layout_below="@id/relative"
+        android:layout_width="400dp"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/exit"
+            android:backgroundTint="@color/white"
+            android:text="BỎ QUA"
+            android:textColor="#1976D2"
+            android:layout_marginStart="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/accept"
+            android:layout_toRightOf="@id/exit"
+            android:backgroundTint="@color/white"
+            android:text="ĐỒNG Ý"
+            android:textColor="#00796B"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
