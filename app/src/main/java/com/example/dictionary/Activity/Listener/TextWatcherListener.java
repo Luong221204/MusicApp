@@ -4,7 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
-import com.example.dictionary.Activity.View.NaviFragment.SearchFragment;
+import com.example.dictionary.Activity.SearchFragment.SearchFragment;
 
 public class TextWatcherListener implements TextWatcher {
     SearchFragment searchFragment;
@@ -20,13 +20,11 @@ public class TextWatcherListener implements TextWatcher {
         if(s.length()>0){
             searchFragment.searchView.setVisibility(View.GONE);
             searchFragment.delete.setVisibility(View.VISIBLE);
-            searchFragment.recyclerView.setVisibility(View.VISIBLE);
-            searchFragment.relativeLayout3.setVisibility(View.GONE);
-            this.searchFragment.searchFragmentPresenter.showOnResultRecycleView(s);
+//            searchFragment.relativeLayout3.setVisibility(View.GONE);
+            // this.searchFragment.searchFragmentPresenter.showOnResultRecycleView(s, searchFragment.getContext());
 
         }else{
-            searchFragment.relativeLayout3.setVisibility(View.VISIBLE);
-            searchFragment.historyView.setVisibility(View.VISIBLE);
+//            searchFragment.relativeLayout3.setVisibility(View.VISIBLE);
             searchFragment.searchView.setVisibility(View.VISIBLE);
             searchFragment.delete.setVisibility(View.GONE);
             searchFragment.recyclerView.setVisibility(View.GONE);

@@ -3,8 +3,8 @@ package com.example.dictionary.Activity.Listener;
 import android.view.View;
 
 import com.example.dictionary.Activity.Application.MyApplication;
-import com.example.dictionary.Activity.Presenter.ViewPresenter.PlayMusicPresenter;
-import com.example.dictionary.Activity.View.Activity.MainActivity;
+import com.example.dictionary.Activity.PlayMusicFragment.PlayMusicPresenter;
+import com.example.dictionary.Activity.MainActivity.MainActivity;
 
 public class ClickViewMainListener implements View.OnClickListener{
     private final PlayMusicPresenter playMusicPresenter;

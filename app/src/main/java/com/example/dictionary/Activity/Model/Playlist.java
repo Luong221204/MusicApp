@@ -1,15 +1,43 @@
 package com.example.dictionary.Activity.Model;
 
-import java.util.ArrayList;
+import androidx.room.Entity;
 
-public class Playlist {
+import java.io.Serializable;
+import java.util.ArrayList;
+@Entity(tableName = "playlists",primaryKeys = {"userId","playlist_id"})
+public class Playlist implements Serializable {
     int icon;
-    String name;
+    int userId;
+    int playlist_id;
+    String name,image,message;
     ArrayList<Song> list;
-    public Playlist(int icon, String name,ArrayList<Song> list) {
+    public Playlist(int icon, String name) {
         this.icon = icon;
         this.name = name;
-        this.list=list;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getPlaylist_id() {
+        return playlist_id;
+    }
+
+    public void setPlaylist_id(int playlist_id) {
+        this.playlist_id = playlist_id;
     }
 
     public ArrayList<Song> getList() {
@@ -30,6 +58,14 @@ public class Playlist {
 
     public String getName() {
         return name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public void setName(String name) {

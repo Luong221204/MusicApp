@@ -4,8 +4,8 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
-import com.example.dictionary.Activity.Presenter.ViewPresenter.UIPresenter;
-import com.example.dictionary.Activity.View.Activity.MainActivity;
+import com.example.dictionary.Activity.MainActivity.UIPresenter;
+import com.example.dictionary.Activity.MainActivity.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FragmentChosen implements BottomNavigationView.OnNavigationItemSelectedListener  {

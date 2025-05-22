@@ -11,7 +11,7 @@ import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Application.MyLiveData;
 import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.Model.Type;
-import com.example.dictionary.Activity.Presenter.AdapterPresenter.DatabasePresenter;
+import com.example.dictionary.Activity.DataAdapter.DatabasePresenter;
 import com.example.dictionary.Activity.RoomDataBase.Database.MyDatabase;
 import com.example.dictionary.Activity.Service.MyService;
 import com.example.dictionary.Activity.Model.Song;

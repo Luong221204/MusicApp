@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Model.Lib;
-import com.example.dictionary.Activity.View.Activity.FavouriteArtistActivity;
-import com.example.dictionary.Activity.View.Activity.LibActivity;
+import com.example.dictionary.Activity.FavouriteArtistActivity.FavouriteArtistActivity;
+import com.example.dictionary.Activity.LibActivity.LibActivity;
 
 public class LibFavouritePresenter {
     public void startActivity(Context context, Lib lib){

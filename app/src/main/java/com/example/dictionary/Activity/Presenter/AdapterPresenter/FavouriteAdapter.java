@@ -1,13 +1,7 @@
 package com.example.dictionary.Activity.Presenter.AdapterPresenter;
-import android.view.View;
-import android.widget.CheckBox;
 
-import com.example.dictionary.Activity.Application.DataManager;
-import com.example.dictionary.Activity.Interface.Adapter.FavouriteInterface;
-import com.example.dictionary.Activity.Model.Later;
+import com.example.dictionary.Activity.Adapter.FavouriteAdapter.FavouriteInterface;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class FavouriteAdapter {

@@ -1,19 +1,42 @@
 package com.example.dictionary.Activity.Model;
 
+import androidx.room.Entity;
+
 import java.util.ArrayList;
-
+@Entity(tableName = "artists2",primaryKeys = {"artist_id","userId"})
 public class Artist extends Behalf {
-    int artist_id;
-    String artist_name;
-    int date_of_born;
-    String artist_image;
+    public int artist_id,userId;
+    public String artist_name,message;
+    public int date_of_born;
+    public String artist_image;
+    boolean isLoved=false;
 
-    public Artist( String name, int date_of_born, int id,String image,int followed) {
+    public Artist(int followed, int type) {
+        super(followed, type);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Artist(String name, int date_of_born, int id, String image, int followed) {
         super(1,followed);
         this.artist_name = name;
         this.date_of_born = date_of_born;
         this.artist_image=image;
         this.artist_id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getId() {
@@ -48,5 +71,11 @@ public class Artist extends Behalf {
         this.artist_image = image;
     }
 
+    public boolean isLoved() {
+        return isLoved;
+    }
 
+    public void setLoved(boolean loved) {
+        isLoved = loved;
+    }
 }

@@ -1,11 +1,14 @@
 package com.example.dictionary.Activity.Model;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-
+@Entity(tableName = "albums2",primaryKeys = {"album_id","userId"})
 public class Album implements Serializable {
-    String album_name,album_image;
-    int year_launched,album_id;
+    public String album_name,album_image;
+    public int year_launched,album_id,userId;
+    public boolean isLoved=false;
     public Album(int id,String name,int y,String image){
         this.year_launched=y;
         this.album_image=image;
@@ -13,7 +16,24 @@ public class Album implements Serializable {
         this.album_name=name;
     }
 
+    public Album() {
+    }
 
+    public boolean isLoved() {
+        return isLoved;
+    }
+
+    public void setLoved(boolean loved) {
+        isLoved = loved;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return album_name;

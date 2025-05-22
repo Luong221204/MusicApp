@@ -64,6 +64,9 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    implementation ("com.jakewharton.rxbinding4:rxbinding:4.0.0")
+
 
 
 

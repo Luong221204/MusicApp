@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.View.NaviFragment.AccountFragment">
+    tools:context=".Activity.MainActivity.AccountFragment.AccountFragment">
 
     <RelativeLayout
         android:layout_marginStart="5dp"

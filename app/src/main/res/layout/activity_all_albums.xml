@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.View.Activity.AllAlbumsActivity">
+    tools:context=".Activity.AllAbumActivity.AllAlbumsActivity">
     <RelativeLayout
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"

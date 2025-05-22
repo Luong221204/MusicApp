@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -26,46 +27,46 @@
             android:name=".Activity.View.Activity.EmptyActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.RegisterActivity"
+            android:name=".Activity.RegisterActivity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.MainActivity"
+            android:name=".Activity.MainActivity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.SplashActivity"
+            android:name=".Activity.LoginActivity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.CategoryActivity"
+            android:name=".Activity.CategoryActivity.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.AllAlbumsActivity"
+            android:name=".Activity.AllAbumActivity.AllAlbumsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.RecentActivity"
+            android:name=".Activity.RecentActivity.RecentActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.PlaylistActivity"
+            android:name=".Activity.PlaylistActivity.PlaylistActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.FavouriteArtistActivity"
+            android:name=".Activity.FavouriteArtistActivity.FavouriteArtistActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.ThemeActivity"
+            android:name=".Activity.ThemeActivity.ThemeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.ArtistActivity"
+            android:name=".Activity.ArtistActivity.ArtistActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.ViewSongActivity"
+            android:name=".Activity.VIewSongActivity.ViewSongActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.LibActivity"
+            android:name=".Activity.LibActivity.LibActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.AlbumActivity"
+            android:name=".Activity.AlbumActivity.AlbumActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.View.Activity.LoginActivity"
+            android:name=".Activity.SplashActivity.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             tools:ignore="DuplicateActivity">

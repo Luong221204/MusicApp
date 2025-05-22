@@ -2,7 +2,7 @@ package com.example.dictionary.Activity.Listener;
 
 import android.view.View;
 
-import com.example.dictionary.Activity.View.NaviFragment.SearchFragment;
+import com.example.dictionary.Activity.SearchFragment.SearchFragment;
 
 public class ClickViewFragmentListener implements View.OnClickListener {
     SearchFragment fragment;

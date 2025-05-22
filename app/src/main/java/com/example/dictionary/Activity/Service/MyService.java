@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.annotation.Nullable;
@@ -19,7 +18,9 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Broadcast.MyReciever;
-import com.example.dictionary.Activity.View.Activity.MainActivity;
+import com.example.dictionary.Activity.VIewSongActivity.ViewFragment.ViewFragmentPresenter;
+import com.example.dictionary.Activity.RoomDataBase.Database.MyDatabase;
+import com.example.dictionary.Activity.MainActivity.MainActivity;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.R;
 
@@ -49,6 +50,14 @@ public class MyService extends Service {
                 song=bundle.getSerializable(MyApplication.SONG,Song.class);
                 if(song != null){
                     MyApplication.song=song;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(MyDatabase.getInstance(getApplicationContext()).userDAO().checkSongRecentlyId(MyApplication.user.getUserId(),song.getId())==null){
+                                ViewFragmentPresenter.onDownloadBackground(getApplicationContext(),MyApplication.PICTURE,song.getImage());
+                            }
+                        }
+                    }).start();
                     if(MyApplication.mediaPlayer != null) MyApplication.mediaPlayer.release();
                     MyApplication.mediaPlayer=MediaPlayer.create(getApplicationContext(), Uri.parse(song.getUrl()));
                     MyApplication.mediaPlayer.start();

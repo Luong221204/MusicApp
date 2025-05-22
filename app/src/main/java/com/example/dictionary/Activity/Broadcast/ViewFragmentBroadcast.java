@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.dictionary.Activity.View.NaviFragment.Pager2Fragment.ViewFragment;
+import com.example.dictionary.Activity.VIewSongActivity.ViewFragment.ViewFragment;
 
 public class ViewFragmentBroadcast extends BroadcastReceiver {
     Intent intent;

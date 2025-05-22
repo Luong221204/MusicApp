@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.View.NaviFragment.PagerFragment.Filter2Fragment">
+    tools:context=".Activity.LibActivity.SortFragment.Filter2Fragment">
 
     <TextView
         android:layout_marginTop="20dp"
@@ -17,7 +17,7 @@
         android:id="@+id/newest"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -32,6 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:id="@+id/tick1"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/click"
@@ -43,7 +45,7 @@
         android:layout_below="@id/newest"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -58,6 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:id="@+id/tick2"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/click"
@@ -69,7 +73,7 @@
         android:layout_below="@id/oldest"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -83,19 +87,20 @@
             android:text="Tên bài hát (A-Z)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <ImageView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/click"
+            android:id="@+id/tick3"
             android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/click" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/down"
         android:layout_below="@id/up"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -110,11 +115,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:id="@+id/tick4"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/click"
             android:layout_width="24dp"
             android:layout_height="24dp"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/down"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
 
 </RelativeLayout>

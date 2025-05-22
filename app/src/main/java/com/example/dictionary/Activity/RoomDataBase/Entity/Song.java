@@ -9,11 +9,12 @@ import java.io.Serializable;
 
 @Entity(tableName = "songs")
 public class Song implements Serializable {
-    private String name,singer,image,album_name,url,type_name;
+    public String name,singer,image,album_name,url,type_name;
     @PrimaryKey()
-    private int song_id;
-    private int year_launched;
-
+    public int song_id;
+    public int year_launched;
+    public int userId;
+    public long time;
     public Song(String name, String singer, String image, String album_name, String url, int song_id, int year_launched,String type_name) {
         this.name = name;
         this.singer = singer;
@@ -23,6 +24,22 @@ public class Song implements Serializable {
         this.song_id = song_id;
         this.type_name=type_name;
         this.year_launched = year_launched;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public String getName() {

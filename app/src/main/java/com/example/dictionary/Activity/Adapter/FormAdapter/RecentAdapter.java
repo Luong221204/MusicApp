@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dictionary.Activity.Adapter.AboutSongAdapter.RecycleAdapter;
+import com.example.dictionary.Activity.RecycleAdapter.RecycleAdapter;
 import com.example.dictionary.Activity.Interface.View.ItemClickListener;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.R;

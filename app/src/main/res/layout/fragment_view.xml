@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.View.NaviFragment.Pager2Fragment.ViewFragment">
+    tools:context=".Activity.VIewSongActivity.ViewFragment.ViewFragment">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="40dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,7 +1,8 @@
 package com.example.dictionary.Activity.Model;
 
 public class User {
-    String username,password,FullName,message,token,phoneNumber;
+    int userId;
+    String username,password,FullName,message,token,phoneNumber,avatar;
     int gender;
     public String getMessage() {
         return message;
@@ -9,6 +10,22 @@ public class User {
 
     public int getGender() {
         return gender;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setGender(int gender) {

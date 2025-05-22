@@ -1,12 +1,35 @@
 package com.example.dictionary.Activity.Model;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
-
+@Entity(tableName = "song_recently",primaryKeys = {"song_id","userId"})
 public class Song extends Behalf implements Serializable {
-    String song_name,song_uri,song_image,artist_name,type_name,album_name;
-    int song_id,artist_id=0,album_id,day_launched;
+    public String song_name,song_uri,song_image,artist_name,type_name,album_name,message;
+    public int song_id,artist_id=0,album_id,day_launched, userId;
+    public boolean isLoved=false;
+    public long time;
+    public Song(int followed, int type) {
+        super(followed, type);
+    }
 
-    public Song(String name, String uri, int artist_id,int id,String song_image,int day_launched,int album_id,String artist_name,String type_name,String album_name,int followed) {
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Song(String name, String uri, int artist_id, int id, String song_image, int day_launched, int album_id, String artist_name, String type_name, String album_name, int followed) {
         super(0,followed);
         this.song_name = name;
         this.album_name=album_name;
@@ -92,6 +115,13 @@ public class Song extends Behalf implements Serializable {
         return song_image;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUrl() {
         return song_uri;
@@ -101,5 +131,11 @@ public class Song extends Behalf implements Serializable {
         this.song_uri = url;
     }
 
+    public boolean isLoved() {
+        return isLoved;
+    }
 
+    public void setLoved(boolean loved) {
+        isLoved = loved;
+    }
 }

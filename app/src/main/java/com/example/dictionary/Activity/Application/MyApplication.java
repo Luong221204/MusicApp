@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -21,8 +23,10 @@ import com.example.dictionary.Activity.Model.Later;
 import com.example.dictionary.Activity.Model.Lib;
 import com.example.dictionary.Activity.Model.Options;
 import com.example.dictionary.Activity.Model.Playlist;
+import com.example.dictionary.Activity.Model.Search;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.Activity.Model.User;
+import com.example.dictionary.Activity.VIewSongActivity.ViewFragment.ViewFragmentPresenter;
 import com.example.dictionary.Activity.RoomDataBase.Database.MyDatabase;
 import com.example.dictionary.R;
 import com.google.gson.Gson;
@@ -52,6 +56,7 @@ public class MyApplication extends Application {
     public static final String ISSHOWED="ISSHOWED";
     public static final String DATA="DATA";
     public static final String ISBACK="ISBACK";
+    public static final String UPDATE="UPDATE";
     public static final String ISBACKOFF="ISBACKOFF";
     public static final String AGAIN="AGAIN";
     public static final String AGAIN3="AGAIN3";
@@ -64,6 +69,8 @@ public class MyApplication extends Application {
     public static final String URI="URI";
     public static final String MYROUTINE="MYROUTINE";
     public static final String MySTORE="MYSTORE";
+    public static final String RECENTLY="RECENTLY";
+
     public static final String USER="USER";
     public static final String FRAGMENTCHOSEN="FragmentChosen";
     public static final String FROMRECEIVE="FROMRECEIVE";
@@ -74,14 +81,23 @@ public class MyApplication extends Application {
     public static final int NEXT=2;
     public static final int BACK=3;
     public static final int DEFAULT=-1000;
-    public static ArrayList<Song> list, auto;
+    public static final String SONG_ASC = "SONG_ASC";
+    public static final String NEWEST = "NEWEST";
+    public static final String OLDEST = "OLDEST";
+    public static final String SORT = "SORT";
+    public static final String ARTIST_ASC = "ARTIST_ASC";
+
+    public static ArrayList<Song> list, auto,d;
     public static ArrayList<com.example.dictionary.Activity.RoomDataBase.Entity.Song> listOff, autoOff=new ArrayList<>();
     public static ArrayList<Artist> artists;
-    public static ArrayList<String> fakeData;
+    public static ArrayList<Search> fakeData;
     public static ArrayList<Options> options;
     public static ArrayList<Playlist> playlists;
     public static Map<String,Integer> type_map;
     public static ArrayList<DownloadSong> downloadSongs;
+    public static ArrayList<Song> FavouriteSongs;
+    public static ArrayList<Artist> FavouriteArtists;
+    public static ArrayList<Album> FavouriteAlbums;
     public static ArrayList<Behalf> behalves=new ArrayList<>();
     public static ArrayList<Album> albums=new ArrayList<>();
     public static ArrayList<Later> theme=new ArrayList<>();
@@ -98,6 +114,7 @@ public class MyApplication extends Application {
     public static MediaPlayer mediaPlayer;
     public static boolean isPlaying=false;
     public static User user=new User();
+    public static int cnt;
 
     BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
         @Override
@@ -118,9 +135,18 @@ public class MyApplication extends Application {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-            }else if(MyApplication.SUCCESS.equals(intent.getAction())){
-                //SongDownloaded.setCount(1);
-
+            } else if(MyApplication.SUCCESS.equals(intent.getAction())) {
+                Bundle bundle = intent.getBundleExtra(MyApplication.DATA);
+                if(bundle != null){
+                    String uri=bundle.getString(MyApplication.URI);
+                    long downloadId=bundle.getLong(MyApplication.ID,-1);
+                    DownloadSong downloadSong= ViewFragmentPresenter.checkOver(downloadId,uri);
+                    if( downloadSong!= null){
+                        ViewFragmentPresenter.saveDownloadSong(downloadSong,context);
+                    }
+                }
+            }else if(MyApplication.SUCCESSFULL.equals(intent.getAction())) {
+                Toast.makeText(context, "Đã tải thành công", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -144,6 +170,8 @@ public class MyApplication extends Application {
         intentFilter.addAction(MyApplication.DATA);
         intentFilter.addAction(MyApplication.OFFLINE);
         intentFilter.addAction(MyApplication.SUCCESS);
+        intentFilter.addAction(MyApplication.SUCCESSFULL);
+
         intentFilter.addAction(MyApplication.FROMRECEIVE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             registerReceiver(broadcastReceiver,intentFilter, Context.RECEIVER_NOT_EXPORTED);
@@ -172,25 +200,8 @@ public class MyApplication extends Application {
         type_map.put("fonk",5);
         type_map.put("edm",6);
         type_map.put("việt",7);
-        playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist",null));
-        fakeData.add("Apple");
-        fakeData.add("Banana");
-        fakeData.add("Cherry");
-        fakeData.add("Date");
-        fakeData.add("Elderberry");
-        fakeData.add("Fig");
-        fakeData.add("Apple");
-        fakeData.add("Banana");
-        fakeData.add("Cherry");
-        fakeData.add("Date");
-        fakeData.add("Elderberry");
-        fakeData.add("Fig");
-        fakeData.add("Apple");
-        fakeData.add("Banana");
-        fakeData.add("Cherry");
-        fakeData.add("Date");
-        fakeData.add("Elderberry");
-        fakeData.add("Fig");
+        playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist"));
+
         options.add(new Options(R.drawable.add,"Thêm vào Playlist"));
         options.add(new Options(R.drawable.download,"Tải xuống"));
         options.add(new Options(R.drawable.like,"Thêm vào Thư viện"));
@@ -203,17 +214,21 @@ public class MyApplication extends Application {
         theme.add(new Later(R.drawable.rocj,"Rock"));
         theme.add(new Later(R.drawable.pop,"Pop"));
         theme.add(new Later(R.drawable.arrow,"Xem tất cả"));
+        FavouriteSongs=new ArrayList<>();
+        FavouriteArtists=new ArrayList<>();
+        FavouriteAlbums=new ArrayList<>();
+        d=new ArrayList<>();
         history.add(new Later(R.drawable.later,"Bài hát nghe gần đây"));
         libs.add(Love);
         libs.add(SongDownloaded);
-        SongDownloaded.setCount(MyDatabase.getInstance(getApplicationContext()).userDAO().getAllSongs().size());
+        //SongDownloaded.setCount(MyDatabase.getInstance(getApplicationContext()).userDAO().getAllSongs().size());
         libs.add(Artists);
         if(!DataManager.getFirstInstalled()){
             Set<String> routines=new HashSet<>();
             routines.add("love");
             routines.add("pop");
-            DataManager.setRoutine(routines);
-            DataManager.setFirstInstalled();
+            DataManager.getInstance().setRoutine(routines);
+            DataManager.getInstance().setFirstInstalled();
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel=new NotificationChannel(CHANNEL_ID,"MY ZING",

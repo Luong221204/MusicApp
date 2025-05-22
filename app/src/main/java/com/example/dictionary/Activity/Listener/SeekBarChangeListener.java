@@ -1,11 +1,8 @@
 package com.example.dictionary.Activity.Listener;
 
-import android.view.View;
 import android.widget.SeekBar;
 
-import androidx.fragment.app.FragmentActivity;
-
-import com.example.dictionary.Activity.View.NaviFragment.Pager2Fragment.ViewFragment;
+import com.example.dictionary.Activity.VIewSongActivity.ViewFragment.ViewFragment;
 
 public class SeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
     ViewFragment fragmentActivity;

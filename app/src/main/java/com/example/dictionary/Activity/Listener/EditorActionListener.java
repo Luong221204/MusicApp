@@ -1,12 +1,12 @@
 package com.example.dictionary.Activity.Listener;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
@@ -16,17 +16,13 @@ import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Model.Album;
 import com.example.dictionary.Activity.Model.Artist;
-import com.example.dictionary.Activity.Model.Behalf;
 import com.example.dictionary.Activity.Model.Song;
-import com.example.dictionary.Activity.View.NaviFragment.SearchFragment;
+import com.example.dictionary.Activity.SearchFragment.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,95 +30,68 @@ import retrofit2.Response;
 
 public class EditorActionListener implements TextView.OnEditorActionListener {
     SearchFragment searchFragment;
-    int cnt=0;
-    ArrayList<Song> songs=new ArrayList<>();
-    ArrayList<Artist> artists=new ArrayList<>();
-    HandlerThread handlerThread=new HandlerThread("DUCLUONG");
-    Handler handler;
+    static ArrayList<Song> songs=new ArrayList<>();
+    static ArrayList<Artist> artists=new ArrayList<>();
     public EditorActionListener(SearchFragment searchFragment){
         this.searchFragment=searchFragment;
-        handlerThread.start();
-
-
     }
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if(v==searchFragment.editText){
             if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
                 if(v.getText().toString().isEmpty()){
+
                     return true;
                 }
                 searchFragment.searchFragmentPresenter.showOrHideSearch(v,1,searchFragment.getContext());
-                cnt=0;
                 MyApplication.behalves.clear();
                 searchAlbums(v.getText().toString());
                 searchSongs(v.getText().toString());
                 searchArtist(v.getText().toString());
-                handler=new Handler(handlerThread.getLooper()){
-                    @Override
-                    public void handleMessage(@NonNull Message msg) {
-                        super.handleMessage(msg);
-                        if(msg.what==0){
-                            songs= (ArrayList<Song>) msg.obj;
-                            if(!songs.isEmpty()){
-                                MyApplication.behalves.addAll(songs);
-                                for(int i=0;i<songs.size();i++){
-                                    songs.get(i).setType(0);
-                                }
-                            }
-                            cnt++;
-                        }else if(msg.what == 1){
-                            int max=0,index=0;
-                            artists= (ArrayList<Artist>) msg.obj;
-                            if(!artists.isEmpty()){
-                                for(int i=0;i<artists.size();i++){
-                                    if(artists.get(i).getFollowed()>=max) {
-                                        max=artists.get(i).getFollowed();
-                                        index=i;
-                                    }
-                                    artists.get(i).setType(1);
-                                }
-                                artists.get(index).setType(2);
-                            }
-
-                            MyApplication.behalves.addAll(artists);
-                            cnt++;
-                        }else{
-                            MyApplication.albums= (ArrayList<Album>) msg.obj;
-
-                            cnt++;
-                        }
-                        if(cnt == 3){
-                            Collections.sort(MyApplication.behalves);
-                            for(int i=0;i< MyApplication.behalves.size();i++){
-                                Log.d("DUCLUONG",MyApplication.behalves.get(i).getFollowed()+" ");
-                            }
-                            Intent intent=new Intent(MyApplication.ACTION);
-                            Gson gson=new Gson();
-                            JsonArray jsonArray=gson.toJsonTree(MyApplication.albums).getAsJsonArray();
-                            String data=jsonArray.toString();
-                            intent.putExtra(MyApplication.DATA,data);
-                            searchFragment.requireContext().sendBroadcast(intent);
-                        }
-                    }
-
-                };
-
+                handlerMessage(searchFragment.requireContext());
                 return true;
             }
             return false;
         }
         return true;
     }
+    public static void handlerMessage(Context context){
+        MyApplication.cnt=0;
+        MyApplication.handler=new Handler(MyApplication.handlerThread.getLooper()){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+                if(msg.what==0){
+                    songs= (ArrayList<Song>) msg.obj;
+                    onSetupSongs(songs);
+                    MyApplication.behalves.addAll(songs);
+                    MyApplication.cnt++;
+                }else if(msg.what == 1){
+                    artists= (ArrayList<Artist>) msg.obj;
+                    onSetupArtists(artists);
+                    MyApplication.behalves.addAll(artists);
+                    MyApplication.cnt++;
+                }else{
+                    MyApplication.albums= (ArrayList<Album>) msg.obj;
+                    MyApplication.cnt++;
+                }
+                if(MyApplication.cnt == 3){
+                    sendBroadcast(context);
+
+                }
+            }
+
+        };
+
+    }
     private void searchSongs(String text){
         ApiService.apiService.getSearchSongs(text).enqueue(new Callback<ArrayList<Song>>() {
             @Override
             public void onResponse(Call<ArrayList<Song>> call, Response<ArrayList<Song>> response) {
-                songs =response.body();
                 Message message=Message.obtain();
                 message.what=0;
                 message.obj=response.body();
-                handler.sendMessage(message);
+                MyApplication.handler.sendMessage(message);
             }
             @Override
             public void onFailure(Call<ArrayList<Song>> call, Throwable t) {
@@ -137,7 +106,7 @@ public class EditorActionListener implements TextView.OnEditorActionListener {
                 Message message=Message.obtain();
                 message.what=1;
                 message.obj=response.body();
-                handler.sendMessage(message);
+                MyApplication.handler.sendMessage(message);
             }
             @Override
             public void onFailure(Call<ArrayList<Artist>> call, Throwable t) {
@@ -151,12 +120,41 @@ public class EditorActionListener implements TextView.OnEditorActionListener {
                 Message message=Message.obtain();
                 message.what=2;
                 message.obj=response.body();
-                handler.sendMessage(message);
+                MyApplication.handler.sendMessage(message);
             }
             @Override
             public void onFailure(Call<ArrayList<Album>> call, Throwable t) {
 
             }
         });
+    }
+    public static void onSetupSongs(ArrayList<Song> songs){
+        if(!songs.isEmpty()){
+            for(int i=0;i<songs.size();i++){
+                songs.get(i).setType(0);
+            }
+        }
+    }
+    public static void onSetupArtists(ArrayList<Artist> artists){
+        int max=0,index=0;
+        if(!artists.isEmpty()){
+            for(int i=0;i<artists.size();i++){
+                if(artists.get(i).getFollowed()>=max) {
+                    max=artists.get(i).getFollowed();
+                    index=i;
+                }
+                artists.get(i).setType(1);
+            }
+            artists.get(index).setType(2);
+        }
+    }
+    public static void sendBroadcast(Context context){
+        //Collections.sort(MyApplication.behalves);
+        Intent intent=new Intent(MyApplication.ACTION);
+        Gson gson=new Gson();
+        JsonArray jsonArray=gson.toJsonTree(MyApplication.albums).getAsJsonArray();
+        String data=jsonArray.toString();
+        intent.putExtra(MyApplication.DATA,data);
+        context.sendBroadcast(intent);
     }
 }

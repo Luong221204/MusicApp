@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.View.Activity.MainActivity">
+    tools:context=".Activity.MainActivity.MainActivity">
     <FrameLayout
         android:id="@+id/fr2"
         android:visibility="gone"

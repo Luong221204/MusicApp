@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.dictionary.Activity.View.Activity.MainActivity;
+import com.example.dictionary.Activity.MainActivity.MainActivity;
 
 public class UIBroadcast extends BroadcastReceiver {
     MainActivity activity;
