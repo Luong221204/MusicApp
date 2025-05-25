@@ -2,6 +2,7 @@ package com.example.dictionary.Activity.ApiService;
 
 import com.example.dictionary.Activity.Model.Album;
 import com.example.dictionary.Activity.Model.Artist;
+import com.example.dictionary.Activity.Model.Comment;
 import com.example.dictionary.Activity.Model.Playlist;
 import com.example.dictionary.Activity.Model.ResultSearch;
 import com.example.dictionary.Activity.Model.Search;
@@ -38,7 +39,7 @@ public interface ApiService {
             connectTimeout(20, TimeUnit.SECONDS).
             readTimeout(30, TimeUnit.SECONDS)
             .build();
-    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.122:2000").
+    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.8:2000").
             addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttp)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
@@ -202,5 +203,15 @@ public interface ApiService {
     @POST("/download")
     Call<Song> postDownload(@Field("userId") int userId,
                             @Field("song_id") int song_id);
+
+    @GET("/comments/{song_id}/{parent_id}/{userId}")
+    Call<ArrayList<Comment>> getCommentForSong(@Path("song_id") int song_id,@Path("parent_id") int parent_id,@Path("userId")int userId);
+
+    @POST("/comments")
+    Call<Comment> postComment(@Body Comment comment);
+
+    @FormUrlEncoded
+    @POST("/comments/like")
+    Call<Comment> postLikeComment(@Field("userId") int userId,@Field("comment_id") int comment_id,@Field("status") int status);
 
 }

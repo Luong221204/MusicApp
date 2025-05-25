@@ -15,6 +15,7 @@ import com.example.dictionary.Activity.Model.Playlist;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.Activity.RoomDataBase.Database.MyDatabase;
 import com.example.dictionary.Activity.MainActivity.MainActivity;
+import com.example.dictionary.R;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class SplashPresenter {
             ApiService.apiService.getPlaylists(MyApplication.user.getUserId()).enqueue(new Callback<ArrayList<Playlist>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Playlist>> call, Response<ArrayList<Playlist>> response) {
+                    MyApplication.playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist"));
                     if(response.body() != null){
                         MyApplication.playlists.addAll(response.body());
 

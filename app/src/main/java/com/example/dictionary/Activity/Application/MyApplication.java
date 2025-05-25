@@ -200,7 +200,6 @@ public class MyApplication extends Application {
         type_map.put("fonk",5);
         type_map.put("edm",6);
         type_map.put("việt",7);
-        playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist"));
 
         options.add(new Options(R.drawable.add,"Thêm vào Playlist"));
         options.add(new Options(R.drawable.download,"Tải xuống"));

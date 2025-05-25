@@ -6,6 +6,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.dictionary.Activity.BottomFragment.BottomFragment;
+import com.example.dictionary.Activity.CommentFragment.CommentFragment;
 
 public interface ViewFragmentInterface {
     void onSeekBar(int progress);
@@ -27,6 +28,7 @@ public interface ViewFragmentInterface {
     void onReset(float alpha);
     void onLove(int icon);
     void onToast(String message);
+    void showCommentFragment(CommentFragment commentFragment);
 
 
 }

@@ -81,7 +81,7 @@ public class LoginPresenter {
                                 @Override
                                 public void onResponse(Call<ArrayList<Playlist>> call, Response<ArrayList<Playlist>> response) {
                                     MyApplication.playlists.clear();
-
+                                    MyApplication.playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist"));
                                     MyApplication.playlists.addAll(response.body());
                                     if(response.body() != null){
                                         for(Playlist playlist:response.body()){

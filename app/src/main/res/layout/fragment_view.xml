@@ -42,14 +42,24 @@
             android:gravity="center"
             android:text="Ca sĩ"
             android:textSize="13sp" />
+
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/like"
-            android:src="@drawable/like"
-            android:layout_marginEnd="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/like" />
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/like"
+            android:id="@+id/comment"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/comment" />
     </RelativeLayout>
     <FrameLayout
         android:id="@+id/frame"

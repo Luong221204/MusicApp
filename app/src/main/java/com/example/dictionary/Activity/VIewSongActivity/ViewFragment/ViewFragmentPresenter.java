@@ -26,6 +26,7 @@ import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Broadcast.MyReciever;
 import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.BottomFragment.BottomFragmentPresenter;
+import com.example.dictionary.Activity.CommentFragment.CommentFragment;
 import com.example.dictionary.Activity.Model.Album;
 import com.example.dictionary.Activity.Model.Artist;
 import com.example.dictionary.Activity.Model.Song;
@@ -132,6 +133,10 @@ public class ViewFragmentPresenter {
         Message msg = this.handler.obtainMessage();
         msg.obj = true;
         this.handler.sendMessage(msg);
+    }
+    public void openComments(){
+        CommentFragment commentFragment=new CommentFragment();
+        viewFragmentInterface.showCommentFragment(commentFragment);
     }
     public void sendYourFavourite(Context context){
         ApiService.apiService.loveOrNot(MyApplication.user.getUserId(),MyApplication.song.getId()).enqueue(new Callback<Song>() {

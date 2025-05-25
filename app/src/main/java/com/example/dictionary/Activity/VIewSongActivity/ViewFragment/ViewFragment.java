@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dictionary.Activity.Application.MyApplication;
+import com.example.dictionary.Activity.CommentFragment.CommentFragment;
 import com.example.dictionary.Activity.Interface.View.ItemClickListener;
 import com.example.dictionary.Activity.VIewSongActivity.AutoFragment.AutomaticFragment;
 import com.example.dictionary.Activity.Listener.SeekBarChangeListener;
@@ -54,7 +55,7 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
     ViewGroup viewGroup;
     SeekBarChangeListener seekBarChangeListener;
     RelativeLayout relativeLayout;
-    ImageView pause,imageView,list,like,back,next,add,download;
+    ImageView pause,imageView,list,like,back,next,add,download,comment;
     TextView time,song,singers,duration;
     public ViewFragmentPresenter viewFragmentPresenter=new ViewFragmentPresenter(this);
     public BroadcastReceiver receiver=new BroadcastReceiver() {
@@ -105,6 +106,10 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
         viewGroup=view.findViewById(R.id.layout);
         relativeLayout=view.findViewById(R.id.relative);
         like=view.findViewById(R.id.like);
+        comment=view.findViewById(R.id.comment);
+        comment.setOnClickListener(v->{
+            viewFragmentPresenter.openComments();
+        });
         like.setOnClickListener(v->{
             viewFragmentPresenter.sendYourFavourite(getContext());
         });
@@ -288,6 +293,11 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
     @Override
     public void onToast(String message) {
         Toast.makeText(requireActivity(),message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showCommentFragment(CommentFragment commentFragment) {
+        commentFragment.show(requireActivity().getSupportFragmentManager(),"haha");
     }
 
 
