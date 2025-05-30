@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +36,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -51,11 +56,23 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
     Disposable disposable;
     public SearchFragmentPresenter searchFragmentPresenter=new SearchFragmentPresenter(this);
     TextWatcherListener textWatcherListener=new TextWatcherListener(this);
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Window window = requireActivity().getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_background));
+        window.setNavigationBarColor(ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_background));
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_search, container, false);
+
         ClickViewFragmentListener clickViewFragmentListener=new ClickViewFragmentListener(this);
         EditorActionListener editorActionListener=new EditorActionListener(this);
         searchView=view.findViewById(R.id.im);
@@ -86,6 +103,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
         ((MainActivity) requireActivity()).frameLayout.setVisibility(View.GONE);
         ((MainActivity) requireActivity()).relativeLayout.setVisibility(View.VISIBLE);
         ((MainActivity) requireActivity()).bottomNavigationView.setVisibility(View.VISIBLE);
+        ((MainActivity) requireActivity()).uiPresenter.onInit();
     }
 
     @Override
@@ -152,5 +170,6 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
         super.onDestroy();
         disposable.dispose();
     }
+
 
 }

@@ -2,6 +2,8 @@ package com.example.dictionary.Activity.FavouriteArtistActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,7 +23,8 @@ import java.util.Objects;
 
 public class FavouriteArtistActivity extends AppCompatActivity implements FavouriteArtistActivityInterface {
     Toolbar toolbar;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,suggest;
+    TextView textView;
     FavouriteArtistPresenter favouriteArtistPresenter=new FavouriteArtistPresenter(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class FavouriteArtistActivity extends AppCompatActivity implements Favour
         setContentView(R.layout.activity_favourited_artist);
         toolbar=findViewById(R.id.toolbar);
         recyclerView=findViewById(R.id.recycle);
+        suggest=findViewById(R.id.recycle1);
+        textView=findViewById(R.id.text);
         favouriteArtistPresenter.onInit(this);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -53,5 +58,15 @@ public class FavouriteArtistActivity extends AppCompatActivity implements Favour
     public void onInit(ContentAdapter contentAdapter, LinearLayoutManager layoutManager) {
         recyclerView.setAdapter(contentAdapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+    @Override
+    public void onSuggest(ContentAdapter contentAdapter, LinearLayoutManager layoutManager) {
+        suggest.setAdapter(contentAdapter);
+        suggest.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void hideSuggest() {
+        textView.setVisibility(View.GONE);
     }
 }

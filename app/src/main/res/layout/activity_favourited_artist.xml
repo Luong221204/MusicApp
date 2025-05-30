@@ -15,36 +15,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:expandedTitleGravity="center_horizontal"
-            app:expandedTitleMarginTop="-10dp"
             app:expandedTitleTextAppearance="@style/CustomTitleText2"
             app:contentScrim="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:id="@+id/collapsing_toolbar">
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_collapseMode="parallax"
                 android:layout_marginTop="80dp">
-
                 <TextView
                     android:id="@+id/quantity"
-                    android:text="...bài hát "
+                    android:text="Đã quan tâm"
                     android:textSize="16sp"
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:id="@+id/recycle"
-                    android:layout_below="@id/quantity"
-                    android:layout_height="wrap_content"/>
-                <RelativeLayout
-                    android:layout_below="@id/recycle"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
 
             </RelativeLayout>
             <androidx.appcompat.widget.Toolbar
@@ -70,17 +57,24 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recycle"
+                android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/text"
+                android:layout_below="@id/recycle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="Nghệ sĩ gợi ý"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_marginTop="40dp"
+                android:layout_below="@id/recycle"
+                android:layout_marginTop="50dp"
                 android:id="@+id/recycle1"
                 android:layout_height="wrap_content"/>
 

@@ -9,13 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.dictionary.Activity.BottomAdapter.BottomsAdapter;
 import com.example.dictionary.Activity.LaterAdapter.LaterAdapter;
@@ -95,10 +99,7 @@ public class LibraryFragment extends Fragment implements LibFragmentInterface {
         libraryPresenter.onStop();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
+
 
     @Override
     public void onDestroy() {

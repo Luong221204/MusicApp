@@ -3,6 +3,7 @@ package com.example.dictionary.Activity.CommentFragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,7 @@ public class CommentFragment extends BottomSheetDialogFragment implements Commen
     EditText editText;
     TextView name;
     ImageView send,close;
-    RelativeLayout relativeLayout;
+    RelativeLayout relativeLayout,blank,bl;
     CommentPresenter commentPresenter=new CommentPresenter(this);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +58,10 @@ public class CommentFragment extends BottomSheetDialogFragment implements Commen
         close=view.findViewById(R.id.close);
         name=view.findViewById(R.id.name);
         relativeLayout=view.findViewById(R.id.response);
+        bl=view.findViewById(R.id.bl);
+        blank=view.findViewById(R.id.blank);
         commentPresenter.onComments(requireContext());
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -82,6 +86,8 @@ public class CommentFragment extends BottomSheetDialogFragment implements Commen
 
     @Override
     public void onComments(CommentsAdapter adapter, LinearLayoutManager layoutManager) {
+        bl.setVisibility(View.VISIBLE);
+        blank.setVisibility(View.GONE);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
     }
@@ -130,6 +136,11 @@ public class CommentFragment extends BottomSheetDialogFragment implements Commen
         im.hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    @Override
+    public void onAlreadySentComment() {
+        bl.setVisibility(View.VISIBLE);
+        blank.setVisibility(View.GONE);
+    }
 
 
     private int dpToPx(int dp, Context context) {

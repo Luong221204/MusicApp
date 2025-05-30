@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class CommentPresenter {
     CommentInterface commentInterface;
     CommentsAdapter commentsAdapter;
+    LinearLayoutManager layoutManager;
     int song_id=-1;
     public CommentPresenter(CommentInterface commentInterface) {
         this.commentInterface = commentInterface;
@@ -33,8 +34,10 @@ public class CommentPresenter {
             public void onResponse(Call<ArrayList<Comment>> call, Response<ArrayList<Comment>> response) {
                 if(response.body() != null){
                     commentsAdapter=new CommentsAdapter(response.body(), context,false,commentInterface);
-                    LinearLayoutManager layoutManager=new LinearLayoutManager(context);
-                    commentInterface.onComments(commentsAdapter,layoutManager);
+                    layoutManager=new LinearLayoutManager(context);
+                    if(response.body().size()>0){
+                        commentInterface.onComments(commentsAdapter,layoutManager);
+                    }
 
                 }
             }
@@ -59,6 +62,7 @@ public class CommentPresenter {
             comment.setUserId(MyApplication.user.getUserId());
             comment.setComment(text);
             comment.setSong_id(song_id);
+            commentInterface.onComments(commentsAdapter,layoutManager);
             ApiService.apiService.postComment(comment).enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {

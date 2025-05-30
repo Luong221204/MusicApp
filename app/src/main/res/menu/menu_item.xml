@@ -3,6 +3,7 @@
     xmlns:item="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/libra" android:icon="@drawable/music_book" android:title="Thư viện"/>
 
-    <item android:id="@+id/home" android:icon="@drawable/music" android:title="Khám phá"/>
+    <item android:id="@+id/home" android:icon="@drawable/music"
+        android:title="Khám phá"/>
     <item android:id="@+id/account" android:icon="@drawable/baseline_account_circle_24" android:title="Cá nhân"/>
 </menu>

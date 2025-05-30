@@ -134,6 +134,16 @@ public class AlbumActivity extends AppCompatActivity implements AlbumActivityInt
     }
 
     @Override
+    public void onSuggest() {
+
+    }
+
+    @Override
+    public void onHideSuggest() {
+
+    }
+
+    @Override
     public void onClickListener(Song song) {
         albumActivityPresenter.showBottomSheet(song);
     }

@@ -6,23 +6,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:behavior_peekHeight="500dp"
     tools:context=".Activity.CommentFragment.CommentFragment">
+
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nest"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
+            <RelativeLayout
+                android:id="@+id/blank"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:alpha="0.6"
+                    android:src="@drawable/img_9"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"/>
+                <TextView
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Hãy là người bình luận đầu tiên"
+                    android:layout_marginTop="175dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/bl"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/recycle"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:layout_below="@+id/recycle"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/recycle"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_below="@+id/recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </RelativeLayout>
         </RelativeLayout>
+
 
     </androidx.core.widget.NestedScrollView>
     <RelativeLayout

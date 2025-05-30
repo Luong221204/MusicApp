@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,6 +44,13 @@ public class AccountFragment extends Fragment implements AccountInterface {
 
                 }
             });
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -6,13 +6,11 @@
     tools:context=".Activity.MainActivity.ExploreFragment.ExploreFragment">
     <RelativeLayout
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textAppearance="@style/TextSizeForOut"
             android:text="Gợi ý cho bạn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -28,22 +26,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Nghe gần đây"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
+                android:textAppearance="@style/TextSizeForOut"
+                />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/relative"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:id="@+id/recycle1"
             android:layout_height="wrap_content"/>
         <RelativeLayout
+            android:layout_marginStart="10dp"
             android:id="@+id/relative2"
             android:layout_marginTop="30dp"
             android:layout_below="@id/recycle1"
@@ -62,9 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textAppearance="@style/TextSizeForOut"
                 android:text="NGHE SY"
                 android:id="@id/name"
                 android:layout_marginTop="20dp"
@@ -75,21 +71,20 @@
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/relative2"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:id="@+id/recycle2"
             android:layout_height="wrap_content"/>
         <RelativeLayout
+            android:layout_marginStart="10dp"
             android:id="@+id/relative3"
             android:layout_marginTop="30dp"
             android:layout_below="@id/recycle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textColor="@color/black"
+                android:textAppearance="@style/TextSizeForOut"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:text="Chủ đề và thể loại"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -97,21 +92,20 @@
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/relative3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:id="@+id/recycle3"
             android:layout_height="wrap_content"/>
         <RelativeLayout
+            android:layout_marginStart="10dp"
             android:id="@+id/relative4"
             android:layout_marginTop="30dp"
             android:layout_below="@id/recycle3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textColor="@color/black"
+                android:textAppearance="@style/TextSizeForOut"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:text="Album hot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -119,7 +113,7 @@
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@id/relative4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:id="@+id/recycle4"
             android:layout_height="wrap_content"/>

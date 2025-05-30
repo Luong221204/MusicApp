@@ -20,7 +20,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/custom_navigation"
+            android:background="#99b3ff"
             app:titleTextAppearance="@style/ToolbarTitleText"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:titleTextColor="@android:color/black"/>
@@ -32,13 +32,23 @@
     </RelativeLayout>
        <com.google.android.material.bottomnavigation.BottomNavigationView
            android:id="@+id/bottom_nav"
-           android:background="@drawable/custom_navigation"
+           android:background="@android:color/transparent"
            android:layout_alignParentBottom="true"
+           android:layout_marginBottom="-70dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            app:menu="@menu/menu_item"
-           app:itemIconSize="16dp"
-           android:padding="0dp"/>
+           app:itemPaddingTop="10dp"
+           app:itemIconSize="22dp"
+           app:itemActiveIndicatorStyle="@android:color/transparent"
+           app:itemBackground="@drawable/custom_navigation"
+           app:itemTextColor="@color/custom_nav_item"
+           app:itemPaddingBottom="35dp"
+           app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
+           app:itemTextAppearanceInactive="@style/BottomNavTextAppearance"
+           app:itemIconTint="@color/custom_nav_item"
+           app:compatShadowEnabled="false"
+           />
 
     <RelativeLayout
         android:visibility="gone"

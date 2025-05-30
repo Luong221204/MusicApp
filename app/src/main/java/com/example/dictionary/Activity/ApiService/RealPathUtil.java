@@ -36,7 +36,6 @@ public class RealPathUtil {
     public static String getRealPathFromURI_API11to18(Context context, Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};
         String result = null;
-
         CursorLoader cursorLoader = new CursorLoader(context, contentUri, proj, null, null, null);
         Cursor cursor = cursorLoader.loadInBackground();
 

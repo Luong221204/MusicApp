@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -79,20 +83,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         intentFilter.addAction(MyApplication.SMALLVIEW);
         IntentFilter intentFilter1=new IntentFilter();
         intentFilter1.addAction(MyApplication.SUCCESS);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             registerReceiver(uiBroadcast,intentFilter, Context.RECEIVER_NOT_EXPORTED);
         }
         registerReceiver(broadcastReceiver,intentFilter, Context.RECEIVER_NOT_EXPORTED);
-
+        uiPresenter.onInit();
     }
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
+
         listFragment=new ArrayList<>();
         toolbar = findViewById(R.id.toolbar);
         relativeLayout=findViewById(R.id.relative);
@@ -101,9 +105,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         bottomNavigationView = findViewById(R.id.bottom_nav);
         FragmentChosen fragmentChosen = new FragmentChosen(this, uiPresenter);
         bottomNavigationView.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) fragmentChosen);
-        uiPresenter.onInit();
-        uiPresenter.downloadForFirstLogin(this);
         uiPresenter.onReplicate(savedInstanceState,getSupportFragmentManager().beginTransaction());
+        uiPresenter.downloadForFirstLogin(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -149,6 +152,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
 
     @Override
     public void onInit() {
+        Window window =getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.status_bar));
+        window.setNavigationBarColor(ContextCompat.getColor(this, R.color.status_bar));
+
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Thư viện");
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
@@ -159,10 +168,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         super.onSaveInstanceState(outState);
         uiPresenter.saveState(outState,getSupportActionBar());
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(broadcastReceiver);
     }
+
 }

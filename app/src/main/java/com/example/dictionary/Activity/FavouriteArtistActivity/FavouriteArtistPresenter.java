@@ -4,11 +4,19 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.ContentAdapter.ContentAdapter;
 import com.example.dictionary.Activity.Application.MyApplication;
+import com.example.dictionary.Activity.Model.Artist;
 import com.example.dictionary.Activity.Model.Behalf;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FavouriteArtistPresenter {
       FavouriteArtistActivityInterface favouriteArtistActivityInterface;
@@ -25,5 +33,25 @@ public class FavouriteArtistPresenter {
         ContentAdapter contentAdapter=new ContentAdapter(context, artists,null);
         LinearLayoutManager layoutManager=new LinearLayoutManager(context);
         favouriteArtistActivityInterface.onInit(contentAdapter,layoutManager);
+        ApiService.apiService.getSuggestArtists().enqueue(new Callback<ArrayList<Artist>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Artist>> call, Response<ArrayList<Artist>> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    ArrayList<Behalf> lovedArtists=new ArrayList<>();
+                    lovedArtists.addAll(response.body());
+                    lovedArtists.addAll(MyApplication.FavouriteArtists);
+                    Set<Behalf> artistSet=new HashSet<>(lovedArtists);
+                    lovedArtists.clear();
+                    lovedArtists.addAll(artistSet);
+                    ContentAdapter contentAdapter1=new ContentAdapter(context, lovedArtists,null);
+                    LinearLayoutManager layoutManager1=new LinearLayoutManager(context);
+                    favouriteArtistActivityInterface.onSuggest(contentAdapter1,layoutManager1);
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<Artist>> call, Throwable t) {
+                favouriteArtistActivityInterface.hideSuggest();
+            }
+        });
     }
 }

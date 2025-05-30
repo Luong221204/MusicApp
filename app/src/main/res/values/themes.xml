@@ -30,9 +30,20 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
     <style name="bottomBar" parent="ThemeOverlay.Material3.NavigationView">
         <item name="android:layout_width">50dp</item>
+    </style>
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:paddingTop">-10dp</item> <!-- Hoặc âm hơn nếu cần -->
+        <item name="android:textSize">8sp</item>  <!-- Tùy ý -->
+    </style>
+    <style name="TextSizeForOut">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name ="color_for_status_bar">
+        <item name="android:color">#99b3ff</item>
     </style>
 
 

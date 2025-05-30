@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
         android:id="@+id/recycle"
         android:layout_height="wrap_content"/>
 

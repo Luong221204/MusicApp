@@ -16,4 +16,5 @@ public interface CommentInterface {
     void onError(String error);
     void onCloseBoard(int action);
     void focusEditText();
+    void onAlreadySentComment();
 }

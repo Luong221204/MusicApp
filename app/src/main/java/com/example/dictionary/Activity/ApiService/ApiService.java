@@ -39,7 +39,7 @@ public interface ApiService {
             connectTimeout(20, TimeUnit.SECONDS).
             readTimeout(30, TimeUnit.SECONDS)
             .build();
-    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.8:2000").
+    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.122:2000").
             addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttp)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
@@ -47,6 +47,9 @@ public interface ApiService {
 
     @GET("/songs")
     Call<ArrayList<Song>> getSongs();
+
+    @GET("/suggest/artists")
+    Call<ArrayList<Artist>> getSuggestArtists();
 
     @GET("/song/{hint}/songs")
     Call<ArrayList<Song>> getSearchSongs(@Path("hint") String hint);

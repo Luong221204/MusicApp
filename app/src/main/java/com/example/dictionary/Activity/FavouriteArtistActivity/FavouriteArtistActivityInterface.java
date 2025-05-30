@@ -6,5 +6,7 @@ import com.example.dictionary.Activity.ContentAdapter.ContentAdapter;
 
 public interface FavouriteArtistActivityInterface {
     void onInit(ContentAdapter contentAdapter, LinearLayoutManager layoutManager);
+    void onSuggest(ContentAdapter contentAdapter, LinearLayoutManager layoutManager);
+    void hideSuggest();
 
 }

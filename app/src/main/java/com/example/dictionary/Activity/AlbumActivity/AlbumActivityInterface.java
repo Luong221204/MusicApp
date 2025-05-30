@@ -11,4 +11,6 @@ public interface AlbumActivityInterface {
     public void setToolbarTitle(String name);
     public void setRecycleView(RecycleAdapter recycleAdapter, LinearLayoutManager layoutManager);
     public void showBottomSheet(BottomFragment bottomFragment);
+    void onSuggest();
+    void onHideSuggest();
 }
