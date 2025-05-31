@@ -38,6 +38,7 @@ public class SplashPresenter {
             ApiService.apiService.getPlaylists(MyApplication.user.getUserId()).enqueue(new Callback<ArrayList<Playlist>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Playlist>> call, Response<ArrayList<Playlist>> response) {
+                    MyApplication.playlists.clear();
                     MyApplication.playlists.add(new Playlist(R.drawable.plus,"Tạo Playlist"));
                     if(response.body() != null){
                         MyApplication.playlists.addAll(response.body());
@@ -107,7 +108,6 @@ public class SplashPresenter {
                         }
                         @Override
                         public void onFailure(Call<ArrayList<Song>> call, Throwable t) {
-
                         }
                     });
 
@@ -116,7 +116,8 @@ public class SplashPresenter {
                 public void onFailure(Call<ArrayList<Playlist>> call, Throwable t) {
                     MyApplication.FavouriteSongs.clear();
                     ArrayList<Song> songs= (ArrayList<Song>) MyDatabase.getInstance(c).userDAO().getFavouriteSongs(MyApplication.user.getUserId(),true);
-                    if(songs != null) MyApplication.FavouriteSongs=songs;
+                    MyApplication.Love.setCount(songs.size());
+                    MyApplication.FavouriteSongs=songs;
                     c.startActivity(intent);
                     dialog.dismiss();
                 }

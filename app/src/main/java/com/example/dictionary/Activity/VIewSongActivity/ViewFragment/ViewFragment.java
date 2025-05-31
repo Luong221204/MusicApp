@@ -32,20 +32,23 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.CommentFragment.CommentFragment;
+import com.example.dictionary.Activity.Interface.Adapter.CLickBottom;
 import com.example.dictionary.Activity.Interface.View.ItemClickListener;
+import com.example.dictionary.Activity.Service.MyService;
 import com.example.dictionary.Activity.VIewSongActivity.AutoFragment.AutomaticFragment;
 import com.example.dictionary.Activity.Listener.SeekBarChangeListener;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.Activity.VIewSongActivity.ViewSongActivity;
 import com.example.dictionary.Activity.BottomFragment.BottomFragment;
 import com.example.dictionary.R;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewFragment extends Fragment implements ViewFragmentInterface, ItemClickListener {
+public class ViewFragment extends Fragment implements ViewFragmentInterface.View, ItemClickListener, CLickBottom {
     Runnable runnable,runnable2,runnable1;
     SeekBar seekBar;
     boolean isLiked=false;
@@ -55,7 +58,7 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
     ViewGroup viewGroup;
     SeekBarChangeListener seekBarChangeListener;
     RelativeLayout relativeLayout;
-    ImageView pause,imageView,list,like,back,next,add,download,comment;
+    ImageView pause,imageView,list,like,back,next,add,download,comment,turn;
     TextView time,song,singers,duration;
     public ViewFragmentPresenter viewFragmentPresenter=new ViewFragmentPresenter(this);
     public BroadcastReceiver receiver=new BroadcastReceiver() {
@@ -137,8 +140,13 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
                 viewFragmentPresenter.setDuration();
                 pause=viewGroup.findViewById(R.id.pause);
                 viewFragmentPresenter.setStatusBar(pause);
+                turn=viewGroup.findViewById(R.id.turn);
                 viewFragmentPresenter.onSceneChange(seekBar,time);
+                turn.setOnClickListener(v->{
+                   viewFragmentPresenter.replay(requireActivity());
+                });
                 add.setOnClickListener(v->{
+                    viewFragmentPresenter.addToPlaylistFragment(ViewFragment.this);
                 });
                 viewFragmentPresenter.onDownloadStatus(requireActivity(),download);
                 download.setOnClickListener(v->{ViewFragmentPresenter.onDownload(getContext(),MyApplication.song);});
@@ -164,11 +172,15 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
                 seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
                 viewFragmentPresenter.onSceneChange(seekBar,null);
                 pause=viewGroup.findViewById(R.id.pause);
+                turn=viewGroup.findViewById(R.id.turn);
                 viewFragmentPresenter.setStatusBar(pause);
                 next.setOnClickListener(v->{viewFragmentPresenter.sendBroadcast(requireActivity(),MyApplication.NEXT);});
                 back.setOnClickListener(v->{viewFragmentPresenter.sendBroadcast(requireActivity(),MyApplication.BACK);});
                 pause.setOnClickListener(v -> {
                     viewFragmentPresenter.onClickPauseOrPlay((ViewSongActivity) requireActivity(),null);
+                });
+                turn.setOnClickListener(v->{
+                    viewFragmentPresenter.replay(requireActivity());
                 });
                 list.setOnClickListener(v->{
                     viewFragmentPresenter.setStatusBar(pause);
@@ -309,6 +321,17 @@ public class ViewFragment extends Fragment implements ViewFragmentInterface, Ite
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void onClickBottom(BottomSheetDialogFragment bottomSheetDialogFragment, Song song) {
+        bottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(),MyApplication.ACTION);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         requireActivity().unregisterReceiver(receiver);
+
     }
 }

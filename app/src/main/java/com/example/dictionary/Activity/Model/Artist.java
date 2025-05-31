@@ -3,6 +3,8 @@ package com.example.dictionary.Activity.Model;
 import androidx.room.Entity;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 @Entity(tableName = "artists2",primaryKeys = {"artist_id","userId"})
 public class Artist extends Behalf {
     public int artist_id,userId;
@@ -10,6 +12,20 @@ public class Artist extends Behalf {
     public int date_of_born;
     public String artist_image;
     boolean isLoved=false;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(artist_name, artist.artist_name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(artist_name);
+    }
 
     public Artist(int followed, int type) {
         super(followed, type);

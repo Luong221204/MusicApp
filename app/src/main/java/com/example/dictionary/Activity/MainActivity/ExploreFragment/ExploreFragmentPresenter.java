@@ -1,13 +1,17 @@
 package com.example.dictionary.Activity.MainActivity.ExploreFragment;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.dictionary.Activity.AlbumAdapter.AlbumAdapter;
 import com.example.dictionary.Activity.LaterAdapter.LaterAdapter;
 import com.example.dictionary.Activity.Adapter.FormAdapter.RecentAdapter;
+import com.example.dictionary.Activity.Model.User;
 import com.example.dictionary.Activity.TypeAdapter.TypeAdapter;
 import com.example.dictionary.Activity.Application.DataManager;
 import com.example.dictionary.Activity.Application.MyApplication;
@@ -30,6 +34,20 @@ public class ExploreFragmentPresenter {
     ExploreFragmentInterface exploreFragmentInterface;
     public ExploreFragmentPresenter(ExploreFragmentInterface exploreFragmentInterface){
         this.exploreFragmentInterface=exploreFragmentInterface;
+    }
+    public void onInit(Context context){
+        ApiService.apiService.ping().enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                exploreFragmentInterface.onInternetConnect(View.VISIBLE,View.GONE,View.VISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                exploreFragmentInterface.onInternetConnect(View.GONE,View.VISIBLE,View.GONE);
+
+            }
+        });
     }
     public void showOnHintRecycle(Context context, ItemClickListener itemClickListener){
         ArrayList<String> stringSet= new ArrayList<>(DataManager.getInstance().getRoutines());

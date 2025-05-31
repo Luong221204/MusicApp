@@ -20,6 +20,7 @@ public interface SearchFragmentInterface {
     public void hideKeyBoard(View view);
     public void hideSearch();
     public void showSearch();
+    void onNetworkDisconnect();
     public void showTabLayout(TabLayout.Tab tab, String title);
     void onInit( SearchViewPagerAdapter searchViewPagerAdapter);
     LifecycleOwner getLifecycleOwner();

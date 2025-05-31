@@ -25,6 +25,7 @@ import java.util.ArrayList;
 //mode 1 là là danh sách phát tự động
 //mode 2 là đã chọn cho trình phát nhạc
 //mode 3 là song trong history dialog
+//mode 4 là thêm vào playlist
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
     private ArrayList<Song> list;

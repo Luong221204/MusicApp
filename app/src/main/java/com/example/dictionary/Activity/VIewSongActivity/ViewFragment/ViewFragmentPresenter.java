@@ -21,12 +21,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.dictionary.Activity.AddToPlistFragment.AddToPlayListFragment;
 import com.example.dictionary.Activity.Application.DownloadSong;
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Broadcast.MyReciever;
 import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.BottomFragment.BottomFragmentPresenter;
 import com.example.dictionary.Activity.CommentFragment.CommentFragment;
+import com.example.dictionary.Activity.Interface.Adapter.CLickBottom;
 import com.example.dictionary.Activity.Model.Album;
 import com.example.dictionary.Activity.Model.Artist;
 import com.example.dictionary.Activity.Model.Song;
@@ -56,9 +58,9 @@ public class ViewFragmentPresenter {
     private boolean isRunnableRunning = false;
     boolean isCalled=false,isTriggered=false;
     String time_text = "";
-    ViewFragmentInterface viewFragmentInterface;
+    ViewFragmentInterface.View viewFragmentInterface;
     Handler handler;
-    public ViewFragmentPresenter(ViewFragmentInterface viewFragmentInterface) {
+    public ViewFragmentPresenter(ViewFragmentInterface.View viewFragmentInterface) {
         this.viewFragmentInterface = viewFragmentInterface;
     }
     public void onIntent(Intent intent,Context context){
@@ -79,7 +81,6 @@ public class ViewFragmentPresenter {
         viewFragmentInterface.playOrPause(source);
         viewFragmentInterface.showRotation(MyApplication.isPlaying);//isPaused
         if (MyApplication.mediaPlayer == null) return;
-
         if (runnable == null) {
             runnable = new Runnable() {
                 @Override
@@ -97,20 +98,17 @@ public class ViewFragmentPresenter {
                     double progress = MyApplication.mediaPlayer.getCurrentPosition() * rate;
                     temp= (int) progress;
                     viewFragmentInterface.onSeekBar((int) progress);
-
                     t++;
                     handler.postDelayed(this, delay);
                 }
             };
         }
-
         if (MyApplication.isPlaying && !isRunnableRunning) {
             isRunnableRunning = true;
             handler.post(runnable);
         }
 
     }
-
     public void onClickPauseOrPlay(ViewSongActivity viewSongActivity, Handler handler) {
         if (MyApplication.isPlaying) {
             Intent intent = new Intent(viewSongActivity, MyService.class);
@@ -121,7 +119,6 @@ public class ViewFragmentPresenter {
             intent.putExtra(MyApplication.ACTION, MyApplication.PLAY);
             viewSongActivity.startService(intent);
         }
-
         Message message = this.handler.obtainMessage();
         message.obj = !MyApplication.isPlaying;
         this.handler.sendMessage(message);
@@ -235,8 +232,6 @@ public class ViewFragmentPresenter {
                 message.obj=false;
                 this.handler.sendMessage(message);
             }
-            //viewFragmentInterface.showRotation(MyApplication.isPlaying);
-
         }
     }
     public Runnable runnable(ImageView imageView){
@@ -278,7 +273,6 @@ public class ViewFragmentPresenter {
         int seconds = t % 60;
         time_text = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
         viewFragmentInterface.onSeekBar2(temp,seekBar,time,time_text);
-
     }
     public void onNext(){
         t=0;
@@ -641,5 +635,23 @@ public class ViewFragmentPresenter {
     }
     public void onReset(){
         viewFragmentInterface.onReset(0.3F);
+    }
+    public void addToPlaylistFragment(CLickBottom cLickBottom){
+        AddToPlayListFragment add=new AddToPlayListFragment();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(MyApplication.SONG,MyApplication.song);
+        add.setArguments(bundle);
+        cLickBottom.onClickBottom(add,null);
+    }
+    public void replay(Context context){
+        t=0;
+        Message message=Message.obtain();
+        message.obj=true;
+        onSeekBar(message);
+        Intent intent=new Intent(context,MyService.class);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(MyApplication.SONG,MyApplication.song);
+        intent.putExtra(MyApplication.BUNDLE,bundle);
+        context.startService(intent);
     }
 }

@@ -39,11 +39,14 @@ public interface ApiService {
             connectTimeout(20, TimeUnit.SECONDS).
             readTimeout(30, TimeUnit.SECONDS)
             .build();
-    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.122:2000").
+    ApiService apiService = new Retrofit.Builder().baseUrl("http://192.168.1.16:2000").
             addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttp)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build().create(ApiService.class);
+
+    @GET("/")
+    Call<User> ping();
 
     @GET("/songs")
     Call<ArrayList<Song>> getSongs();
@@ -216,5 +219,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/comments/like")
     Call<Comment> postLikeComment(@Field("userId") int userId,@Field("comment_id") int comment_id,@Field("status") int status);
+
+    @FormUrlEncoded
+    @POST("/change/password")
+    Call<User> changePassword(@Field("userId") int userId,@Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/change/name")
+    Call<User> changeFullName(@Field("userId") int userId,@Field("FullName") String FullName);
 
 }

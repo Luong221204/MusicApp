@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.dictionary.Activity.ContentAdapter.ContentAdapter;
 import com.example.dictionary.Activity.RecycleAdapter.RecycleAdapter;
 import com.example.dictionary.Activity.BottomFragment.BottomFragment;
 
@@ -16,4 +17,5 @@ public interface PlaylistActivityInterface {
     void showBottomSheet(BottomFragment bottomFragment);
     ActivityResultLauncher<Intent> getLauncher();
     void requestPermission(String[] permissions,int requestCode);
+    void onSuggest(RecycleAdapter recycleAdapter, LinearLayoutManager layoutManager);
 }

@@ -66,13 +66,11 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
         window.setStatusBarColor(ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_background));
         window.setNavigationBarColor(ContextCompat.getColor(requireContext(), com.google.android.material.R.color.design_default_color_background));
     }
-
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_search, container, false);
-
         ClickViewFragmentListener clickViewFragmentListener=new ClickViewFragmentListener(this);
         EditorActionListener editorActionListener=new EditorActionListener(this);
         searchView=view.findViewById(R.id.im);
@@ -86,7 +84,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
         back.setOnClickListener(clickViewFragmentListener);
         delete.setOnClickListener(clickViewFragmentListener);
         editText=view.findViewById(R.id.search_text);
-        searchFragmentPresenter.onInit(getActivity());
+        searchFragmentPresenter.onInit(requireActivity());
         editText.setOnClickListener(clickViewFragmentListener);
         editText.setOnEditorActionListener(editorActionListener);
         disposable=searchFragmentPresenter.getObservable(editText);
@@ -132,6 +130,11 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
     public void showSearch() {
         relativeLayout.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onNetworkDisconnect() {
+        relativeLayout3.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -16,4 +16,5 @@ public interface ExploreFragmentInterface {
     void showBottomSheet(BottomFragment bottomFragment);
     void showOnHistoryRecycle(LaterAdapter laterAdapter, LinearLayoutManager layoutManager1);
     void showOnHotAlbum(AlbumAdapter albumAdapter,LinearLayoutManager layoutManager);
+    void onInternetConnect(int show,int hide,int hint);
 }

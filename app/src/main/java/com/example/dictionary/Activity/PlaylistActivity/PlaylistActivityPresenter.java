@@ -21,6 +21,7 @@ import com.example.dictionary.Activity.Interface.View.ItemClickListener;
 import com.example.dictionary.Activity.Model.Playlist;
 import com.example.dictionary.Activity.Model.Song;
 import com.example.dictionary.Activity.BottomFragment.BottomFragment;
+import com.google.android.gms.common.api.Api;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,9 +51,8 @@ public class PlaylistActivityPresenter {
                 playlistActivityInterface.onImage(playlist.getImage());
             }
             playlistActivityInterface.onToolbar(playlist.getName());
-
-
         }
+
     }
     public void onListSongs(Intent intent, Context context, ItemClickListener itemClickListener){
         Bundle bundle=intent.getBundleExtra(MyApplication.BUNDLE);
@@ -63,8 +63,27 @@ public class PlaylistActivityPresenter {
             ApiService.apiService.getSongsBaseOnPlaylist(playlist.getPlaylist_id()).enqueue(new Callback<ArrayList<Song>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Song>> call, Response<ArrayList<Song>> response) {
+                    ArrayList<Song> songs1=new ArrayList<>(response.body());
                     RecycleAdapter recycleAdapter=new RecycleAdapter(response.body(),context,0,null,itemClickListener);
                     LinearLayoutManager layoutManager=new LinearLayoutManager(context);
+                    ApiService.apiService.getSongs().enqueue(new Callback<ArrayList<Song>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<Song>> call, Response<ArrayList<Song>> response) {
+                            if(response.isSuccessful()&&response.body() != null){
+                                ArrayList<Song> songs=new ArrayList<>(response.body());
+                                songs.removeAll(songs1);
+                                RecycleAdapter recycleAdapter1=new RecycleAdapter(songs,context,4,null,itemClickListener);
+                                LinearLayoutManager layoutManager1=new LinearLayoutManager(context);
+                                playlistActivityInterface.onSuggest(recycleAdapter1,layoutManager1);
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArrayList<Song>> call, Throwable t) {
+
+                        }
+                    });
                     playlistActivityInterface.onListSongs(recycleAdapter,layoutManager);
                 }
 

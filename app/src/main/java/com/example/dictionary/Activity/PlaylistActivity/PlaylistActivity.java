@@ -36,7 +36,7 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistActiv
     ImageView avatar;
     Toolbar toolbar;
     PlaylistActivityPresenter playlistPresenter=new PlaylistActivityPresenter(this);
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recyclerView2;
     ActivityResultLauncher<Intent> launcher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result->{
                 if(result.getResultCode()== Activity.RESULT_OK){
@@ -63,6 +63,7 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistActiv
             }
         });
         recyclerView=findViewById(R.id.recycle);
+        recyclerView2=findViewById(R.id.recycle2);
         playlistPresenter.onInit(getIntent());
         playlistPresenter.onListSongs(getIntent(),PlaylistActivity.this,this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -113,6 +114,12 @@ public class PlaylistActivity extends AppCompatActivity implements PlaylistActiv
     @Override
     public void requestPermission(String[] permissions,int request_code) {
         ActivityCompat.requestPermissions(this,permissions,request_code);
+    }
+
+    @Override
+    public void onSuggest(RecycleAdapter recycleAdapter, LinearLayoutManager layoutManager) {
+        recyclerView2.setAdapter(recycleAdapter);
+        recyclerView2.setLayoutManager(layoutManager);
     }
 
     @Override

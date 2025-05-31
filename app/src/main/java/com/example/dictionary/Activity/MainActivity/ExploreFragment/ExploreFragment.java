@@ -1,5 +1,6 @@
 package com.example.dictionary.Activity.MainActivity.ExploreFragment;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ RecyclerView recyclerView,recyclerView1,recyclerView2,recyclerView3,recyclerView
 TextView name;
 ExploreFragmentPresenter exploreFragmentPresenter=new ExploreFragmentPresenter(this);
 CircleImageView image;
+RelativeLayout hide,show,hint;
 BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -73,6 +77,7 @@ BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
         requireActivity().registerReceiver(broadcastReceiver,intentFilter, Context.RECEIVER_NOT_EXPORTED);
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +89,10 @@ BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
         recyclerView=view.findViewById(R.id.recycle);
         recyclerView1=view.findViewById(R.id.recycle1);
         recyclerView3=view.findViewById(R.id.recycle3);
+        hide=view.findViewById(R.id.hide);
+        hint=view.findViewById(R.id.hint);
+        show=view.findViewById(R.id.show);
+        exploreFragmentPresenter.onInit(requireContext());
         exploreFragmentPresenter.showOnHintRecycle(getContext(),this);
         exploreFragmentPresenter.showOnIdol();
         exploreFragmentPresenter.showOnIdolAlbum(getContext());
@@ -92,13 +101,10 @@ BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
         exploreFragmentPresenter.showOnAlbumHot(getContext());
         return view;
     }
-
     @Override
     public void onClickListener(Song song) {
         exploreFragmentPresenter.showBottomSheet(song);
     }
-
-
     @Override
     public void showOnIdol(String images, String singer_name) {
         Glide.with(requireActivity()).load(images).into(image);
@@ -107,7 +113,6 @@ BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
 
     @Override
     public void showOnHintRecycle(LinearLayoutManager linearLayoutManager,RecentAdapter adapter) {
-
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
@@ -144,9 +149,22 @@ BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
         recyclerView4.setAdapter(albumAdapter);
         recyclerView4.setLayoutManager(layoutManager);
     }
+
+    @Override
+    public void onInternetConnect(int s, int h, int ht) {
+        show.setVisibility(s);
+        hide.setVisibility(h);
+        hint.setVisibility(ht);
+    }
+
     @Override
     public void onStop() {
         super.onStop();
         requireActivity().unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

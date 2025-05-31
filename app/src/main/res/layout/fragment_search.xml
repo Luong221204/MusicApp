@@ -31,6 +31,18 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
     <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/relative3"
+        android:layout_below="@id/relative2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_centerInParent="true"
+            android:src="@drawable/internet_disconnected"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_marginRight="5dp"
         android:visibility="gone"
         android:id="@+id/relative1"

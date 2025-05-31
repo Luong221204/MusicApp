@@ -22,6 +22,7 @@ import com.example.dictionary.Activity.VIewSongActivity.ViewFragment.ViewFragmen
 import com.example.dictionary.Activity.RoomDataBase.Database.MyDatabase;
 import com.example.dictionary.Activity.MainActivity.MainActivity;
 import com.example.dictionary.Activity.Model.Song;
+import com.example.dictionary.Activity.VIewSongActivity.ViewSongActivity;
 import com.example.dictionary.R;
 
 public class MyService extends Service {
@@ -120,7 +121,7 @@ public class MyService extends Service {
 
     }
     private PendingIntent sendToActivity(){
-        Intent intentActivity=new Intent(this, MainActivity.class);
+        Intent intentActivity=new Intent(this, ViewSongActivity.class);
         intentActivity.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         int action=MyApplication.isPlaying?MyApplication.PLAY:MyApplication.PAUSE;
         Bundle bundle=new Bundle();

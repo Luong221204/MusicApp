@@ -1,6 +1,7 @@
 package com.example.dictionary.Activity.FavouriteArtistActivity;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -37,13 +38,13 @@ public class FavouriteArtistPresenter {
             @Override
             public void onResponse(Call<ArrayList<Artist>> call, Response<ArrayList<Artist>> response) {
                 if(response.isSuccessful() && response.body() != null){
-                    ArrayList<Behalf> lovedArtists=new ArrayList<>();
-                    lovedArtists.addAll(response.body());
-                    lovedArtists.addAll(MyApplication.FavouriteArtists);
-                    Set<Behalf> artistSet=new HashSet<>(lovedArtists);
-                    lovedArtists.clear();
-                    lovedArtists.addAll(artistSet);
-                    ContentAdapter contentAdapter1=new ContentAdapter(context, lovedArtists,null);
+                    ArrayList<Artist> lovedArtists = new ArrayList<>(response.body());
+                    lovedArtists.removeAll(MyApplication.FavouriteArtists);
+                    ArrayList<Behalf> behalves=new ArrayList<>(lovedArtists);
+                    for(Behalf behalf:behalves){
+                        behalf.setType(1);
+                    }
+                    ContentAdapter contentAdapter1=new ContentAdapter(context, behalves,null);
                     LinearLayoutManager layoutManager1=new LinearLayoutManager(context);
                     favouriteArtistActivityInterface.onSuggest(contentAdapter1,layoutManager1);
                 }

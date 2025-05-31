@@ -43,7 +43,8 @@ public class RecyclePresenter {
         }else if(mode ==3){
             if(position==0) recycleInterface.onInitMode(View.GONE,View.GONE,View.GONE,View.VISIBLE,0.85F);
             else recycleInterface.onInitMode(View.GONE,View.GONE,View.GONE,View.GONE,0.85F);
-
+        }else if(mode ==4){
+            recycleInterface.onInitMode(View.GONE,View.VISIBLE,View.GONE,View.GONE,1F);
         }
     }
     public void onInit(Song song,Context context){

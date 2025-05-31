@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,8 +35,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class AccountFragment extends Fragment implements AccountInterface {
     CircleImageView circleImageView;
+    ImageView changeName;
     TextView textView;
-    RelativeLayout sign_out;
+    RelativeLayout sign_out,change;
     AccountPresenter accountPresenter=new AccountPresenter(this);
     ActivityResultLauncher<Intent> launcher=registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result->{
@@ -48,7 +50,7 @@ public class AccountFragment extends Fragment implements AccountInterface {
     @Override
     public void onStart() {
         super.onStart();
-
+        accountPresenter.init();
     }
 
     @SuppressLint("MissingInflatedId")
@@ -59,6 +61,8 @@ public class AccountFragment extends Fragment implements AccountInterface {
         circleImageView=view.findViewById(R.id.image);
         textView=view.findViewById(R.id.name);
         sign_out=view.findViewById(R.id.sign_out);
+        change=view.findViewById(R.id.change);
+        changeName=view.findViewById(R.id.edit);
         sign_out.setOnClickListener(v->{
             accountPresenter.sign_out(getContext());
         });
@@ -68,7 +72,8 @@ public class AccountFragment extends Fragment implements AccountInterface {
                 accountPresenter.requestForPermission();
             }
         });
-        accountPresenter.init();
+        change.setOnClickListener(v->{accountPresenter.onStartChangeAc(getContext());});
+        changeName.setOnClickListener(v->accountPresenter.onStartName(getContext()));
         return view;
     }
 

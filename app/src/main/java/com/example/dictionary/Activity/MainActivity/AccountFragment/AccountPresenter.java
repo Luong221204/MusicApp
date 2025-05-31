@@ -14,10 +14,12 @@ import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.ApiService.RealPathUtil;
 import com.example.dictionary.Activity.Application.DataManager;
 import com.example.dictionary.Activity.Application.MyApplication;
+import com.example.dictionary.Activity.ChangeActivity.ChangeActivity;
 import com.example.dictionary.Activity.Model.Playlist;
 import com.example.dictionary.Activity.Model.User;
 import com.example.dictionary.Activity.LoginActivity.LoginPresenter;
 import com.example.dictionary.Activity.LoginActivity.LoginActivity;
+import com.example.dictionary.Activity.View.Activity.EmptyActivity;
 import com.example.dictionary.R;
 
 import java.io.File;
@@ -103,5 +105,14 @@ public class AccountPresenter {
                 }
             });
         }
+    }
+    public void onStartChangeAc(Context context){
+        Intent intent=new Intent(context,ChangeActivity.class);
+        context.startActivity(intent);
+    }
+    public void onStartName(Context context){
+        Intent intent=new Intent(context, EmptyActivity.class);
+        intent.putExtra(MyApplication.ACTION,MyApplication.user.getFullName());
+        context.startActivity(intent);
     }
 }

@@ -1,8 +1,10 @@
 package com.example.dictionary.Activity.OptionAdapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Application.MyLiveData;
 import com.example.dictionary.Activity.Model.Options;
 import com.example.dictionary.Activity.Model.Song;
@@ -27,9 +29,15 @@ public class OptionPresenter {
     public void onOptions(Options options, Context context, Song song){
         if(options.getName().equals("Thêm vào Playlist")){
             AddToPlayListFragment add=new AddToPlayListFragment();
+            Bundle bundle=new Bundle();
+            bundle.putSerializable(MyApplication.SONG,song);
+            add.setArguments(bundle);
             optionInterface.onAddToPlayListFragment(add);
         }else if(options.getName().equals("Xem nghệ sĩ")){
             ArtistBottomFragment add=new ArtistBottomFragment();
+            Bundle bundle=new Bundle();
+            bundle.putSerializable(MyApplication.SONG,song);
+            add.setArguments(bundle);
             optionInterface.onArtistBottomFragment(add,song);
         }else if(options.getName().equals("Tải xuống")){
             optionInterface.onInit(0.2F,false,options.getName(),options.getIcon());

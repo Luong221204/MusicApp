@@ -1,12 +1,18 @@
 package com.example.dictionary.Activity.LoginActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,11 +41,13 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface {
                 }
             }
     );
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         login=findViewById(R.id.login);
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
@@ -154,5 +162,4 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface {
     public void cancelDialog(Dialog dialog) {
         dialog.dismiss();
     }
-
 }

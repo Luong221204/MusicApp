@@ -3,6 +3,8 @@ package com.example.dictionary.Activity.Model;
 import androidx.room.Entity;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 @Entity(tableName = "song_recently",primaryKeys = {"song_id","userId"})
 public class Song extends Behalf implements Serializable {
     public String song_name,song_uri,song_image,artist_name,type_name,album_name,message;
@@ -27,6 +29,19 @@ public class Song extends Behalf implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return song_id == song.song_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(song_id);
     }
 
     public Song(String name, String uri, int artist_id, int id, String song_image, int day_launched, int album_id, String artist_name, String type_name, String album_name, int followed) {

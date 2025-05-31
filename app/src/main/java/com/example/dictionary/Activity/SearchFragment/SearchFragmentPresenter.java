@@ -2,6 +2,8 @@ package com.example.dictionary.Activity.SearchFragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ import com.example.dictionary.Activity.ApiService.ApiService;
 import com.example.dictionary.Activity.Application.MyApplication;
 import com.example.dictionary.Activity.Model.Search;
 import com.example.dictionary.Activity.Model.Song;
+import com.example.dictionary.Activity.Model.User;
 import com.example.dictionary.Activity.SearchViewPagerAdapter.SearchViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -115,16 +118,28 @@ public class SearchFragmentPresenter {
         this.ui.hideKeyBoard(view);
     }
     public void onInit(Context context){
-        SearchViewPagerAdapter searchViewPagerAdapter=new SearchViewPagerAdapter(ui.getFragmentActivity(),1);
-        ui.onInit(searchViewPagerAdapter);
-        ui.getFragmentActivity().getOnBackPressedDispatcher().addCallback(
-                ui.getLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        backToActivity();
-                    }
-                }
-        );
+        ApiService.apiService.ping().enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                SearchViewPagerAdapter searchViewPagerAdapter=new SearchViewPagerAdapter(ui.getFragmentActivity(),1);
+                ui.onInit(searchViewPagerAdapter);
+                ui.getFragmentActivity().getOnBackPressedDispatcher().addCallback(
+                        ui.getLifecycleOwner(),
+                        new OnBackPressedCallback(true) {
+                            @Override
+                            public void handleOnBackPressed() {
+                                backToActivity();
+                            }
+                        }
+                );
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                ui.onNetworkDisconnect();
+            }
+        });
+
+
     }
 }
